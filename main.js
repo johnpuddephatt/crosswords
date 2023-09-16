@@ -2,7 +2,7 @@ import './libraries/crosswords-js/dist/crosswords.css';
 import { CrosswordsJS } from './libraries/crosswords-js/src/index.mjs';
 
 
-document.querySelector('#app').innerHTML = `<div class="crossword"></div><div class="down-clues"></div> `;
+document.querySelector('#app').innerHTML = `<h1>Crossword</h1><div class="crossword"></div><div class="down-clues"></div> `;
 let crosswordModel;
 try {
   crosswordModel = CrosswordsJS.compileCrossword({

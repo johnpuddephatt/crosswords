@@ -1,6 +1,11 @@
+import legacy from '@vitejs/plugin-legacy'
+
 // vite.config.js
 export default {
-  build: {
-    target: 'es2015'
-  }
+     plugins: [
+    legacy({
+      targets: ['Android 4'],
+    }),
+  ],
+ 
 }

@@ -1,0 +1,1 @@
+System.register([],(function(e,s){"use strict";return{execute:function(){document.querySelector("#app").innerHTML='<h1>Crossword</h1><div class="crossword"></div><div class="down-clues"></div> '}}}));

@@ -221,15 +221,15 @@ try {
 }
 
 
-// let crosswordController = new CrosswordsJS.Controller(
-//   crosswordModel,
-//   document.querySelector(".crossword"),
-// );
+let crosswordController = new CrosswordsJS.Controller(
+  crosswordModel,
+  document.querySelector(".crossword"),
+);
 
-//     crosswordModel.downClues.forEach((clue) => {
-//       let clueEl = document.createElement("div");
-//       clueEl.innerHTML = `${clue.clueLabel} ${clue.clueText} ${clue.answerLengthText}`;
-//       document.querySelector(".down-clues").appendChild(clueEl);
-//     });
+    crosswordModel.downClues.forEach((clue) => {
+      let clueEl = document.createElement("div");
+      clueEl.innerHTML = `${clue.clueLabel} ${clue.clueText} ${clue.answerLengthText}`;
+      document.querySelector(".down-clues").appendChild(clueEl);
+    });
 
 

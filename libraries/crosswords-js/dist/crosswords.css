@@ -195,6 +195,10 @@ table {
   }
 }
 
+.crossword {
+  padding-bottom: 500px;
+}
+
 .crossword-grid {
   /* display: grid; */
   border-collapse: collapse;
@@ -207,8 +211,8 @@ table {
   font-size: x-large;
   /* added */
 
-  height: 662px;
-  width: 662px;
+  height: 542px;
+  width: 542px;
 
   /* display: flex;
   flex-direction: row;
@@ -219,8 +223,8 @@ table {
   position: relative;
   float: left;
   z-index: 0;
-  height: 42px;
-  width: 42px;
+  height: 34px;
+  width: 34px;
   border: 1px solid black;
 }
 

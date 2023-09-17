@@ -196,7 +196,7 @@ table {
 }
 
 .crossword {
-  padding-bottom: 500px;
+  padding-bottom: 300px;
 }
 
 .crossword-grid {
@@ -211,8 +211,8 @@ table {
   font-size: x-large;
   /* added */
 
-  height: 542px;
-  width: 542px;
+  height: 482px;
+  width: 482px;
 
   /* display: flex;
   flex-direction: row;
@@ -223,8 +223,8 @@ table {
   position: relative;
   float: left;
   z-index: 0;
-  height: 34px;
-  width: 34px;
+  height: 30px;
+  width: 30px;
   border: 1px solid black;
 }
 

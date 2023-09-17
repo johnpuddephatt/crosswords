@@ -197,7 +197,6 @@ table {
 
 .crossword-grid {
   /* display: grid; */
-  gap: 1px;
   border-collapse: collapse;
   box-sizing: border-box;
   padding: 1px;
@@ -208,20 +207,21 @@ table {
   font-size: x-large;
   /* added */
 
-  height: 600px;
-  width: 600px;
+  height: 662px;
+  width: 662px;
 
-  display: flex;
+  /* display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
 }
 
 .crossword-grid .cwcell {
   position: relative;
-
+  float: left;
   z-index: 0;
-  height: 38px;
-  width: 38px;
+  height: 42px;
+  width: 42px;
+  border: 1px solid black;
 }
 
 .crossword-grid .cwcell.dark {
@@ -262,6 +262,8 @@ table {
 .crossword-grid .cwclue-label {
   margin: 1px 0px 0px 1px;
   position: absolute;
+  top: 0;
+  left: 0;
   pointer-events: none;
 }
 

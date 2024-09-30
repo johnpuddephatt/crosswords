@@ -196,7 +196,7 @@ table {
 }
 
 .crossword {
-  padding-bottom: 300px;
+  padding-bottom: 10px;
 }
 
 .crossword-grid {
@@ -342,8 +342,7 @@ html {
 
 body {
   margin: 0;
-  color: #e6e6e6;
-  background-color: #737373;
+
   padding: 5px;
   font-family: 'PT Sans', sans-serif;
 }

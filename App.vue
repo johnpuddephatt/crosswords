@@ -5,6 +5,7 @@
         Crossword #{{ id }}
       </option>
     </select>
+    {{ id }}
     {{ cat }}
     <div ref="crossword"></div>
 
@@ -41,14 +42,14 @@ export default {
 
   mounted() {
     console.log(this.$refs.crossword);
-    this.fetchAndBuildCrossword(this.crosswordID);
+    // this.fetchAndBuildCrossword(this.crosswordID);
 
-    document.cookie =
-      this.crosswordID +
-      "=John Doe" +
-      "; expires=Jan, 01 Dec 2999 12:00:00 UTC";
+    // document.cookie =
+    //   this.crosswordID +
+    //   "=John Doe" +
+    //   "; expires=Jan, 01 Dec 2999 12:00:00 UTC";
 
-    this.cat = this.getCookie(this.crosswordID);
+    // this.cat = this.getCookie(this.crosswordID);
   },
 
   watch: {

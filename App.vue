@@ -1,22 +1,24 @@
 <template>
-  <select v-model="crosswordID">
-    <option v-for="id in [29504, 29503, 29502, 29501, 29500]" :value="id">
-      Crossword #{{ id }}
-    </option>
-  </select>
-  {{ cat }}
-  <div ref="crossword"></div>
+  <div>
+    <select v-model="crosswordID">
+      <option v-for="id in [29504, 29503, 29502, 29501, 29500]" :value="id">
+        Crossword #{{ id }}
+      </option>
+    </select>
+    {{ cat }}
+    <div ref="crossword"></div>
 
-  <div v-if="crosswordModel" class="grid grid-cols-2">
-    <div>
-      <div v-for="clue in crosswordModel.downClues">
-        {{ clue.clueLabel }} {{ clue.clueText }} {{ clue.answerLengthText }}
+    <div v-if="crosswordModel" class="grid grid-cols-2">
+      <div>
+        <div v-for="clue in crosswordModel.downClues">
+          {{ clue.clueLabel }} {{ clue.clueText }} {{ clue.answerLengthText }}
+        </div>
       </div>
-    </div>
-    <hr />
-    <div>
-      <div v-for="clue in crosswordModel.acrossClues">
-        {{ clue.clueLabel }} {{ clue.clueText }} {{ clue.answerLengthText }}
+      <hr />
+      <div>
+        <div v-for="clue in crosswordModel.acrossClues">
+          {{ clue.clueLabel }} {{ clue.clueText }} {{ clue.answerLengthText }}
+        </div>
       </div>
     </div>
   </div>
@@ -38,10 +40,10 @@ export default {
   },
 
   mounted() {
+    console.log(this.$refs.crossword);
     this.fetchAndBuildCrossword(this.crosswordID);
 
     localStorage.setItem("myCat", "Tom");
-
     this.cat = localStorage.getItem("myCat");
   },
 

@@ -5,7 +5,7 @@
         Crossword #{{ id }}
       </option>
     </select>
-    {{ id }}
+    {{ crosswordID }}
     {{ cat }}
     <div ref="crossword"></div>
 

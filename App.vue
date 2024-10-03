@@ -41,7 +41,7 @@ export default {
 
   mounted() {
     console.log(this.$refs.crossword);
-    this.fetchAndBuildCrossword(this.crosswordID);
+    // this.fetchAndBuildCrossword(this.crosswordID);
 
     localStorage.setItem("myCat", "Tom");
     this.cat = localStorage.getItem("myCat");

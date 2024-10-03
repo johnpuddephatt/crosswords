@@ -41,10 +41,14 @@ export default {
 
   mounted() {
     console.log(this.$refs.crossword);
-    // this.fetchAndBuildCrossword(this.crosswordID);
+    this.fetchAndBuildCrossword(this.crosswordID);
 
-    localStorage.setItem("myCat", "Tom");
-    this.cat = localStorage.getItem("myCat");
+    document.cookie =
+      this.crosswordID +
+      "=John Doe" +
+      "; expires=Jan, 01 Dec 2999 12:00:00 UTC";
+
+    this.cat = this.getCookie(this.crosswordID);
   },
 
   watch: {
@@ -56,16 +60,25 @@ export default {
 
   methods: {
     fetchAndBuildCrossword(id) {
-      fetch(
+      var xhr = new XMLHttpRequest();
+      xhr.open(
+        "GET",
         "https://faas-lon1-917a94a7.doserverless.co/api/v1/web/fn-ed3fd66e-24fe-4bd6-acc8-7352117dc861/default/crosswordGrabber.json?id=" +
-          id
-      )
-        .then((response) => response.json())
-        .then(
-          (response) => (this.crosswordData = this.transformData(response.body))
-        )
-        .then((response) => console.log(this.crosswordData))
-        .then((response) => this.buildCrossword());
+          id,
+        true
+      );
+
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          var response = JSON.parse(xhr.responseText);
+          this.crosswordData = this.transformCrosswordData(response.body);
+
+          console.log(this.crosswordData);
+          this.buildCrossword();
+        }
+      };
+
+      xhr.send();
     },
     buildCrossword() {
       this.$refs.crossword.innerHTML = "";
@@ -81,7 +94,7 @@ export default {
       );
     },
 
-    transformData(original) {
+    transformCrosswordData(original) {
       const info = {
         source: original.creator.webUrl,
         title: original.name,
@@ -119,6 +132,22 @@ export default {
         acrossClues,
         downClues,
       };
+    },
+
+    getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(";");
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == " ") {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
     },
   },
 };

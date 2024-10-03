@@ -54,7 +54,7 @@ export default {
 
   watch: {
     crosswordID() {
-      console.log("trying", this.crosswordID);
+      console.log("trying: " + this.crosswordID);
       this.fetchAndBuildCrossword(this.crosswordID);
     },
   },
@@ -69,13 +69,17 @@ export default {
         true
       );
 
-      xhr.onreadystatechange = () => {
+      var vue = this;
+
+      xhr.onreadystatechange = function () {
+        console.log("onreadystatechange ");
+
         if (xhr.readyState == 4 && xhr.status == 200) {
           var response = JSON.parse(xhr.responseText);
-          this.crosswordData = this.transformCrosswordData(response.body);
+          vue.crosswordData = vue.transformCrosswordData(response.body);
 
-          console.log(this.crosswordData);
-          this.buildCrossword();
+          console.log(vue.crosswordData);
+          vue.buildCrossword();
         }
       };
 
@@ -108,23 +112,30 @@ export default {
       const width = original.dimensions.cols;
       const height = original.dimensions.rows;
 
-      const acrossClues = original.entries
-        .filter((entry) => entry.direction === "across")
-        .map((entry) => ({
-          x: entry.position.x + 1, // Convert to 1-based indexing
-          y: entry.position.y + 1, // Convert to 1-based indexing
-          clue: `${entry.humanNumber}. ${entry.clue}`,
-          solution: entry.solution,
-        }));
+      var acrossClues = [];
+      var downClues = [];
 
-      const downClues = original.entries
-        .filter((entry) => entry.direction === "down")
-        .map((entry) => ({
-          x: entry.position.x + 1, // Convert to 1-based indexing
-          y: entry.position.y + 1, // Convert to 1-based indexing
-          clue: `${entry.humanNumber}. ${entry.clue}`,
-          solution: entry.solution,
-        }));
+      for (var i = 0; i < original.entries.length; i++) {
+        var entry = original.entries[i];
+
+        if (entry.direction === "across") {
+          acrossClues.push({
+            x: entry.position.x + 1, // Convert to 1-based indexing
+            y: entry.position.y + 1, // Convert to 1-based indexing
+            clue: entry.humanNumber + ". " + entry.clue,
+            solution: entry.solution,
+          });
+        }
+
+        if (entry.direction === "down") {
+          downClues.push({
+            x: entry.position.x + 1, // Convert to 1-based indexing
+            y: entry.position.y + 1, // Convert to 1-based indexing
+            clue: entry.humanNumber + ". " + entry.clue,
+            solution: entry.solution,
+          });
+        }
+      }
 
       return {
         info,

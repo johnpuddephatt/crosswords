@@ -60,7 +60,7 @@
     <div v-if="crosswordModel" class="flex gap-1 text-sm">
       <div class="basis-1/2">
         <div class="flex gap-0.5" v-for="clue in crosswordModel.downClues">
-          <span class="font-bold tracking-tighter w-5">{{
+          <span class="font-bold text-right tracking-tighter w-5">{{
             clue.clueLabel
           }}</span>
           <div>
@@ -71,7 +71,7 @@
 
       <div class="basis-1/2">
         <div class="flex gap-0.5" v-for="clue in crosswordModel.acrossClues">
-          <span class="font-bold tracking-tighter w-5">{{
+          <span class="font-bold text-right tracking-tighter w-5">{{
             clue.clueLabel
           }}</span>
           <div>

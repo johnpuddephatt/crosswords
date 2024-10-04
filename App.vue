@@ -15,7 +15,7 @@
         Crossword #{{ id }}
       </option>
     </select>
-    {{ crosswordID }} (Cookie: {{ cookie }})
+    {{ crosswordID }} (Cookie: {{ cookie }}, LocalStorage: {{ cat }})
     <div ref="crossword"></div>
 
     <div v-if="crosswordModel" class="grid grid-cols-2">
@@ -44,6 +44,7 @@ export default {
   data() {
     return {
       log: "",
+      cat: "",
       cookie: "",
       crosswordID: 29504,
       crosswordData: {
@@ -264,6 +265,9 @@ export default {
   },
 
   mounted() {
+    localStorage.setItem("myCat", "Tom");
+    this.cat = localStorage.getItem("myCat");
+
     this.fetchAndBuildCrossword(this.crosswordID);
   },
 

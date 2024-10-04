@@ -304,13 +304,13 @@ export default {
       var vue = this;
 
       xhr.onreadystatechange = function () {
-        this.logger("onreadystatechange ");
+        vue.logger("onreadystatechange ");
 
         if (xhr.readyState == 4 && xhr.status == 200) {
           var response = JSON.parse(xhr.responseText);
           vue.crosswordData = vue.transformCrosswordData(response.body);
 
-          console.log(vue.crosswordData);
+          vue.logger(vue.crosswordData);
           vue.buildCrossword();
         }
       };

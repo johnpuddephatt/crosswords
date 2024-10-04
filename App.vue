@@ -67,7 +67,7 @@ export default {
       //     .then((response) => response.json())
       //     .then((response) => console.log(response));
 
-      console.log("after fetch()");
+      console.log("after fetch");
       //   var xhr = new XMLHttpRequest();
       //   xhr.open(
       //     "GET",

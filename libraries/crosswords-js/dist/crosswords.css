@@ -220,6 +220,7 @@ table {
 }
 
 .crossword-grid .cwcell {
+  box-sizing: content-box;
   position: relative;
   float: left;
   z-index: 0;

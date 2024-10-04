@@ -1,6 +1,7 @@
 import legacy from "@vitejs/plugin-legacy";
 import autoprefixer from "autoprefixer";
 import vue from "@vitejs/plugin-vue2";
+import tailwindcss from "tailwindcss";
 
 // vite.config.js
 export default {
@@ -16,6 +17,7 @@ export default {
         autoprefixer({
           overrideBrowserslist: ["Android 4"],
         }),
+        tailwindcss,
       ],
     },
   },

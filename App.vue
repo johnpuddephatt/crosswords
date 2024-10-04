@@ -1,6 +1,7 @@
 <template>
   <div>
     <div
+      v-if="log"
       style="
         background: black;
         font-size: 10px;
@@ -10,14 +11,16 @@
       "
       v-html="log"
     ></div>
-    <select v-model="crosswordID">
-      <option v-for="id in [29504, 29503, 29502, 29501]" :value="id">
-        Guardian Crossword #{{ id }}
-        {{ getAnswered(id) }}
-      </option>
-    </select>
 
-    <div ref="crossword"></div>
+    <div class="flex items-start gap-2">
+      <div ref="crossword"></div>
+      <select class="border rounded" v-model="crosswordID">
+        <option v-for="id in [29504, 29503, 29502, 29501]" :value="id">
+          Guardian #{{ id }}
+          {{ getAnswered(id) }}
+        </option>
+      </select>
+    </div>
 
     <div v-if="crosswordModel" class="grid grid-cols-2">
       <div>
@@ -26,7 +29,7 @@
           >{{ clue.answerLengthText }}
         </div>
       </div>
-      <hr />
+
       <div>
         <div v-for="clue in crosswordModel.acrossClues">
           {{ clue.clueLabel }} <span v-html="clue.clueText"></span

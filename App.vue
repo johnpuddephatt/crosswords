@@ -15,7 +15,7 @@
         Crossword #{{ id }}
       </option>
     </select>
-    {{ crosswordID }}
+    {{ crosswordID }} (Cookie: {{ cookie }})
     <div ref="crossword"></div>
 
     <div v-if="crosswordModel" class="grid grid-cols-2">
@@ -27,7 +27,8 @@
       <hr />
       <div>
         <div v-for="clue in crosswordModel.acrossClues">
-          {{ clue.clueLabel }} {{ clue.clueText }} {{ clue.answerLengthText }}
+          {{ clue.clueLabel }} <span v-html="clue.clueText"></span
+          >{{ clue.answerLengthText }}
         </div>
       </div>
     </div>
@@ -42,6 +43,7 @@ export default {
   data() {
     return {
       log: "",
+      cookie: "",
       crosswordID: 29504,
       crosswordData: {
         info: {
@@ -262,20 +264,11 @@ export default {
 
   mounted() {
     this.fetchAndBuildCrossword(this.crosswordID);
-
-    // document.cookie =
-    //   this.crosswordID +
-    //   "=John Doe" +
-    //   "; expires=Jan, 01 Dec 2999 12:00:00 UTC";
-
-    // this.cat = this.getCookie(this.crosswordID);
   },
 
   watch: {
     crosswordID() {
       this.fetchAndBuildCrossword();
-
-      console.log("trying: " + this.crosswordID);
     },
   },
 
@@ -285,13 +278,13 @@ export default {
         typeof value === "object" ? JSON.stringify(value) : value + "<br>";
     },
 
-    fetchAndBuildCrossword(crossword_id) {
-      this.buildCrossword();
-      this.logger("fetchAndBuild() here we go...");
-
-      //   fetch("./guardian-demo.json")
-      //     .then((response) => response.json())
-      //     .then((response) => this.logger(response));
+    fetchAndBuildCrossword() {
+      document.cookie =
+        this.crosswordID +
+        "=" +
+        this.crosswordID.toString().split("").reverse().join("");
+      ("; expires=Jan, 01 Dec 2999 12:00:00 UTC");
+      this.cookie = this.getCookie(this.crosswordID);
 
       var xhr = new XMLHttpRequest();
       xhr.open(
@@ -302,15 +295,10 @@ export default {
       );
 
       var vue = this;
-
       xhr.onreadystatechange = function () {
-        vue.logger("onreadystatechange ");
-
         if (xhr.readyState == 4 && xhr.status == 200) {
           var response = JSON.parse(xhr.responseText);
           vue.crosswordData = vue.transformCrosswordData(response.body);
-
-          vue.logger(vue.crosswordData);
           vue.buildCrossword();
         }
       };
@@ -378,21 +366,21 @@ export default {
       };
     },
 
-    // getCookie(cname) {
-    //   let name = cname + "=";
-    //   let decodedCookie = decodeURIComponent(document.cookie);
-    //   let ca = decodedCookie.split(";");
-    //   for (let i = 0; i < ca.length; i++) {
-    //     let c = ca[i];
-    //     while (c.charAt(0) == " ") {
-    //       c = c.substring(1);
-    //     }
-    //     if (c.indexOf(name) == 0) {
-    //       return c.substring(name.length, c.length);
-    //     }
-    //   }
-    //   return "";
-    // },
+    getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(";");
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == " ") {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    },
   },
 };
 </script>

@@ -23,34 +23,34 @@
         <div class="flex flex-col relative" v-if="crosswordController">
           <button
             v-if="current"
-            class="block py-2 mt-1 w-auto bg-gray-200 rounded"
+            class="block py-2 mt-1 w-auto bg-gray-100 rounded"
             @click="crosswordController.revealCurrentClue()"
           >
             Reveal clue
           </button>
           <button
             v-if="current"
-            class="block py-2 mt-1 w-auto bg-gray-200 rounded"
+            class="block py-2 mt-1 w-auto bg-gray-100 rounded"
             @click="crosswordController.cleanCurrentClue()"
           >
             Check clue
           </button>
 
           <button
-            class="block py-2 mt-1 max-w-full w-auto bg-gray-200 rounded"
+            class="block py-2 mt-1 max-w-full w-auto bg-gray-100 rounded"
             @click="crosswordController.revealCrossword()"
           >
             Reveal all
           </button>
           <button
-            class="block py-2 mt-1 w-auto bg-gray-200 rounded"
+            class="block py-2 mt-1 w-auto bg-gray-100 rounded"
             @click="crosswordController.cleanCrossword()"
           >
             Check all
           </button>
 
           <button
-            class="block py-2 mt-1 w-auto bg-gray-200 rounded"
+            class="block py-2 mt-1 w-auto bg-gray-100 rounded"
             @click="crosswordController.resetCrossword()"
           >
             Clear all

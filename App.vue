@@ -22,18 +22,22 @@
       </select>
     </div>
 
-    <div v-if="crosswordModel" class="flex gap-2">
+    <div v-if="crosswordModel" class="flex gap-1">
       <div class="w-1/2">
-        <div v-for="clue in crosswordModel.downClues">
-          {{ clue.clueLabel }} <span v-html="clue.clueText"></span
-          >{{ clue.answerLengthText }}
+        <div class="flex gap-0.5" v-for="clue in crosswordModel.downClues">
+          {{ clue.clueLabel }}
+          <div>
+            <span v-html="clue.clueText"> </span> {{ clue.answerLengthText }}
+          </div>
         </div>
       </div>
 
       <div class="w-1/2">
-        <div v-for="clue in crosswordModel.acrossClues">
-          {{ clue.clueLabel }} <span v-html="clue.clueText"></span
-          >{{ clue.answerLengthText }}
+        <div class="flex gap-0.5" v-for="clue in crosswordModel.acrossClues">
+          {{ clue.clueLabel }}
+          <div>
+            <span v-html="clue.clueText"> </span> {{ clue.answerLengthText }}
+          </div>
         </div>
       </div>
     </div>

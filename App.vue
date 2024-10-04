@@ -1,5 +1,15 @@
 <template>
   <div>
+    <div
+      style="
+        background: black;
+        font-size: 10px;
+        color: white;
+        font-family: 'Courier New', Courier, monospace;
+        padding: 1em;
+      "
+      v-html="log"
+    ></div>
     <select v-model="crosswordID">
       <option v-for="id in [29504, 29503, 29502, 29501, 29500]" :value="id">
         Crossword #{{ id }}
@@ -31,6 +41,7 @@ import { CrosswordsJS } from "./libraries/crosswords-js/src/index.mjs";
 export default {
   data() {
     return {
+      log: "",
       crosswordID: 29504,
       crosswordData: {
         info: {
@@ -269,12 +280,23 @@ export default {
   },
 
   methods: {
+    logger(value) {
+      this.log +=
+        typeof value === "object" ? JSON.stringify(value) : value + "<br>";
+    },
+
+    /*************  ✨ Codeium Command ⭐  *************/
+    /**
+     * Fetches a crossword and builds it. Currently hard-coded to fetch guardian-demo.json
+     * @param {string} crossword_id - The ID of the crossword to fetch
+     */
+    /******  f683ec0a-2865-4e6c-aaba-17e975ef9886  *******/
     fetchAndBuildCrossword(crossword_id) {
       this.buildCrossword();
-      //   fetch("./guardian-demo.json")
-      //     .then((response) => console.log("inside fetch()"))
-      //     .then((response) => response.json())
-      //     .then((response) => console.log(response));
+
+      fetch("./guardian-demo.json")
+        .then((response) => response.json())
+        .then((response) => this.logger(response));
 
       //   var xhr = new XMLHttpRequest();
       //   xhr.open(

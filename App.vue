@@ -285,14 +285,9 @@ export default {
         typeof value === "object" ? JSON.stringify(value) : value + "<br>";
     },
 
-    /*************  ✨ Codeium Command ⭐  *************/
-    /**
-     * Fetches a crossword and builds it. Currently hard-coded to fetch guardian-demo.json
-     * @param {string} crossword_id - The ID of the crossword to fetch
-     */
-    /******  f683ec0a-2865-4e6c-aaba-17e975ef9886  *******/
     fetchAndBuildCrossword(crossword_id) {
       this.buildCrossword();
+      this.logger("fetchAndBuild() here we go...");
 
       fetch("./guardian-demo.json")
         .then((response) => response.json())

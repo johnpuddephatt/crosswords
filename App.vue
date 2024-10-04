@@ -3,7 +3,10 @@
     <div class="flex">
       <div ref="crossword"></div>
       <div class="h-auto flex-1 gap-4 px-2 flex flex-col justify-between">
-        <select class="border rounded block w-full" v-model="crosswordID">
+        <select
+          class="mt-2 text-lg p-1 border rounded block w-full"
+          v-model="crosswordID"
+        >
           <option v-for="id in [29504, 29503, 29502, 29501]" :value="id">
             Guardian #{{ id }}
             {{ getAnswered(id) }}

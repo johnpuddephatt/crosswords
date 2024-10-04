@@ -21,7 +21,8 @@
     <div v-if="crosswordModel" class="grid grid-cols-2">
       <div>
         <div v-for="clue in crosswordModel.downClues">
-          {{ clue.clueLabel }} {{ clue.clueText }} {{ clue.answerLengthText }}
+          {{ clue.clueLabel }} <span v-html="clue.clueText"></span
+          >{{ clue.answerLengthText }}
         </div>
       </div>
       <hr />

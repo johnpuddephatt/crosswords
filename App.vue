@@ -42,7 +42,7 @@ export default {
 
   mounted() {
     console.log(this.$refs.crossword);
-    // this.fetchAndBuildCrossword(this.crosswordID);
+    this.fetchAndBuildCrossword(this.crosswordID);
 
     // document.cookie =
     //   this.crosswordID +
@@ -61,6 +61,10 @@ export default {
 
   methods: {
     fetchAndBuildCrossword(id) {
+      fetch("./guardian-demo.json")
+        .then((response) => response.json())
+        .then((response) => console.log(response));
+
       var xhr = new XMLHttpRequest();
       xhr.open(
         "GET",

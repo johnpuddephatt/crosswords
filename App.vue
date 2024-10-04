@@ -1,31 +1,53 @@
 <template>
   <div>
-    <div
-      v-if="log"
-      style="
-        background: black;
-        font-size: 10px;
-        color: white;
-        font-family: 'Courier New', Courier, monospace;
-        padding: 1em;
-      "
-      v-html="log"
-    ></div>
-
-    <div class="flex items-start gap-2">
+    <div class="flex items-start mb-1">
       <div ref="crossword"></div>
-      <select class="border rounded" v-model="crosswordID">
-        <option v-for="id in [29504, 29503, 29502, 29501]" :value="id">
-          Guardian #{{ id }}
-          {{ getAnswered(id) }}
-        </option>
-      </select>
+      <div class="h-auto gap-4 px-2 flex self-stretch flex-col">
+        <select class="border rounded block w-full" v-model="crosswordID">
+          <option v-for="id in [29504, 29503, 29502, 29501]" :value="id">
+            Guardian #{{ id }}
+            {{ getAnswered(id) }}
+          </option>
+        </select>
+
+        <div v-if="current" class="text-lg leading-tight">
+          <span class="font-bold tracking-tighter w-5">{{
+            current.clueLabel
+          }}</span>
+          <div>
+            <span v-html="current.clueText"> </span>
+            {{ current.answerLengthText }}
+          </div>
+        </div>
+
+        <div class="mt-auto" v-if="crosswordController">
+          <button @click="crosswordController.revealCrossword()">
+            Reveal all
+          </button>
+          <button @click="crosswordController.cleanCrossword()">
+            Check all
+          </button>
+
+          <button @click="crosswordController.revealCurrentClue()">
+            Reveal clue
+          </button>
+          <button @click="crosswordController.cleanCurrentClue()">
+            Check clue
+          </button>
+
+          <button @click="crosswordController.resetCrossword()">
+            Clear all
+          </button>
+        </div>
+      </div>
     </div>
 
     <div v-if="crosswordModel" class="flex gap-1">
       <div class="w-1/2">
         <div class="flex gap-0.5" v-for="clue in crosswordModel.downClues">
-          {{ clue.clueLabel }}
+          <span class="font-bold tracking-tighter w-5">{{
+            clue.clueLabel
+          }}</span>
           <div>
             <span v-html="clue.clueText"> </span> {{ clue.answerLengthText }}
           </div>
@@ -34,7 +56,9 @@
 
       <div class="w-1/2">
         <div class="flex gap-0.5" v-for="clue in crosswordModel.acrossClues">
-          {{ clue.clueLabel }}
+          <span class="font-bold tracking-tighter w-5">{{
+            clue.clueLabel
+          }}</span>
           <div>
             <span v-html="clue.clueText"> </span> {{ clue.answerLengthText }}
           </div>
@@ -51,7 +75,7 @@ import { CrosswordsJS } from "./libraries/crosswords-js/src/index.mjs";
 export default {
   data() {
     return {
-      log: "",
+      current: null,
       crosswordID: null,
       crosswordData: {},
       crosswordModel: null,
@@ -78,9 +102,8 @@ export default {
   },
 
   methods: {
-    logger(value) {
-      this.log +=
-        typeof value === "object" ? JSON.stringify(value) : value + "<br>";
+    log() {
+      console.log(this.current);
     },
 
     getAnswered(id) {
@@ -156,6 +179,9 @@ export default {
           this.crosswordModel,
           this.$refs.crossword
         );
+        this.crosswordController.addEventsListener(["clueSelected"], (data) => {
+          this.current = data;
+        });
         this.autosave = setInterval(() => this.autosaver(), 5000);
       }
     },

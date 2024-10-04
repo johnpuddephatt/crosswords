@@ -53,8 +53,9 @@ export default {
 
   watch: {
     crosswordID() {
-      console.log("trying: " + this.crosswordID);
       this.fetchAndBuildCrossword();
+
+      console.log("trying: " + this.crosswordID);
     },
   },
 

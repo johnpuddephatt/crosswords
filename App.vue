@@ -20,7 +20,7 @@
           </div>
         </div>
 
-        <div class="mt-auto" v-if="crosswordController">
+        <div class="flex flex-col gap-1 mt-auto" v-if="crosswordController">
           <button @click="crosswordController.revealCrossword()">
             Reveal all
           </button>

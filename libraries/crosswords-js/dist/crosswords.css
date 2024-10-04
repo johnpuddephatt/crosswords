@@ -144,7 +144,7 @@ table {
     font-size: 1.14rem;
   }
   .crossword-grid .cwclue-label {
-    font-size: 0.4rem;
+    font-size: 0.6rem;
   }
   .crossword-grid .cwcell-revealed {
     border-left: 0.4rem solid transparent;
@@ -164,7 +164,7 @@ table {
     font-size: 1.14rem;
   }
   .crossword-grid .cwclue-label {
-    font-size: 0.4rem;
+    font-size: 0.6rem;
   }
   .crossword-grid .cwcell-revealed {
     border-left: 0.4rem solid transparent;
@@ -184,7 +184,7 @@ table {
     font-size: 1.4rem;
   }
   .crossword-grid .cwclue-label {
-    font-size: 0.4em;
+    font-size: 0.6em;
   }
   .crossword-grid .cwcell-revealed {
     border-left: 0.6rem solid transparent;

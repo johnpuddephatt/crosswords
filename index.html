@@ -19,9 +19,9 @@
     ></div>
     <script>
       (function () {
-        var old = console.log;
+        var old = console.error;
         var logger = document.getElementById("log");
-        console.log = function (message) {
+        console.error = function (message) {
           logger.innerHTML += message + "<br />";
           old(message);
         };

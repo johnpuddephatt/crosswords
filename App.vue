@@ -11,11 +11,12 @@
       v-html="log"
     ></div>
     <select v-model="crosswordID">
-      <option v-for="id in [29504, 29503, 29502, 29501, 29500]" :value="id">
-        Crossword #{{ id }}
+      <option v-for="id in [29504, 29503, 29502, 29501]" :value="id">
+        Guardian Crossword #{{ id }}
+        {{ getAnswered(id) }}
       </option>
     </select>
-    {{ crosswordID }} (Cookie: {{ cookie }}, LocalStorage: {{ cat }})
+
     <div ref="crossword"></div>
 
     <div v-if="crosswordModel" class="grid grid-cols-2">
@@ -44,236 +45,28 @@ export default {
   data() {
     return {
       log: "",
-      cat: "",
-      cookie: "",
-      crosswordID: 29504,
-      crosswordData: {
-        info: {
-          source:
-            "https://www.fifteensquared.net/2022/05/16/financial-times-17095-by-alberich/",
-          title: "Financial Times 17,095",
-          setter: {
-            title: "Alberich",
-            url: "https://www.fifteensquared.net/2022/05/16/financial-times-17095-by-alberich/",
-          },
-        },
-        width: 15,
-        height: 15,
-        acrossClues: [
-          {
-            x: 1,
-            y: 1,
-            clue: "1. Married woman shows animosity (6)",
-            solution: "MALICE",
-            answer: "wotcha",
-          },
-          {
-            x: 8,
-            y: 1,
-            clue: "4. One's held back by a stout grating (8)",
-            solution: "ABRASIVE",
-            answer: "abraXive",
-          },
-          {
-            x: 1,
-            y: 3,
-            clue: "10. Out of gas, grateful for a quantity of it (7)",
-            solution: "TANKFUL",
-          },
-          {
-            x: 9,
-            y: 3,
-            clue: "11. Weapon caused injury to young woman (7)",
-            solution: "CUTLASS",
-          },
-          {
-            x: 1,
-            y: 5,
-            clue: "12. One in bar may have one for it? (4)",
-            solution: "ROAD",
-          },
-          {
-            x: 6,
-            y: 5,
-            clue: "13. Woman who suffered capital loss in Lebanon, beaten by fluctuating yen (4,6)",
-            solution: "ANNE BOLEYN",
-          },
-          {
-            x: 1,
-            y: 7,
-            clue: "15. Start as home counties solicitor (3,3)",
-            solution: "SET OUT",
-          },
-          {
-            x: 8,
-            y: 7,
-            clue: "16. Officer without company is beset by depression (7)",
-            solution: "COLONEL",
-          },
-          {
-            x: 2,
-            y: 9,
-            clue: "20. Runs into shy university teacher in London borough (7)",
-            solution: "CROYDON",
-          },
-          {
-            x: 10,
-            y: 9,
-            clue: "21. Supply outstanding artwork (6)",
-            solution: "RELIEF",
-          },
-          {
-            x: 1,
-            y: 11,
-            clue: "24. Generous Alberich awkwardly accepts thanks (10)",
-            solution: "CHARITABLE",
-          },
-          {
-            x: 12,
-            y: 11,
-            clue: "26. French bread? (4)",
-            solution: "EURO",
-          },
-          {
-            x: 1,
-            y: 13,
-            clue: "28. Sick joke finally gets girl banned (7)",
-            solution: "ILLEGAL",
-          },
-          {
-            x: 9,
-            y: 13,
-            clue: "29. Southern climate's not hot - so wear this? (7)",
-            solution: "SWEATER",
-          },
-          {
-            x: 1,
-            y: 15,
-            clue: "30. Old lady faces adversity, ignoring the odds - most impressive (8)",
-            solution: "GRANDEST",
-          },
-          {
-            x: 10,
-            y: 15,
-            clue: "31. Cheese's said to give one wind (6)",
-            solution: "BREEZE",
-          },
-        ],
-        downClues: [
-          {
-            x: 1,
-            y: 1,
-            clue: "1. Ordered risotto after introduction to Minnie Driver (8)",
-            solution: "MOTORIST",
-            answer: "woctopus",
-          },
-          {
-            x: 3,
-            y: 1,
-            clue: "2. City thrashed Real, having engaged new players (9)",
-            solution: "LANCASTER",
-          },
-          {
-            x: 5,
-            y: 1,
-            clue: "3. Caught university fellows with blow (4)",
-            solution: "CUFF",
-          },
-          {
-            x: 9,
-            y: 1,
-            clue: "5. He will have education to a degree (8)",
-            solution: "BACHELOR",
-          },
-          {
-            x: 11,
-            y: 1,
-            clue: "6. Scientist whose study involves moon, star and heart of asteroid? (10)",
-            solution: "ASTRONOMER",
-          },
-          {
-            x: 13,
-            y: 1,
-            clue: "7. I am taking a long time to create public persona (5)",
-            solution: "IMAGE",
-          },
-          {
-            x: 15,
-            y: 1,
-            clue: "8. Religious ascetic from German city beginning to evangelise (6)",
-            solution: "ESSENE",
-          },
-          {
-            x: 7,
-            y: 2,
-            clue: "9. Frank's lacking a point (5)",
-            solution: "BLUNT",
-          },
-          {
-            x: 5,
-            y: 6,
-            clue: "14.  Improvised explanation of unfair trial? (4-6)",
-            solution: "JURY RIGGED",
-          },
-          {
-            x: 13,
-            y: 7,
-            clue: "17.  Content of letter must follow quite ridiculous protocol (9)",
-            solution: "ETIQUETTE",
-          },
-          {
-            x: 7,
-            y: 8,
-            clue: "18.  Company moves fast across lake in rowing boats (8)",
-            solution: "CORACLES",
-          },
-          {
-            x: 15,
-            y: 8,
-            clue: "19.  Naturally I must escape from ferocious bats (2,6)",
-            solution: "OF COURSE",
-          },
-          {
-            x: 1,
-            y: 10,
-            clue: "22.  Timeless longing to find old Chinese text (1,5)",
-            solution: "I CHING",
-          },
-          {
-            x: 9,
-            y: 10,
-            clue: "23.  Rich, even when penniless? (5)",
-            solution: "PLUSH",
-          },
-          {
-            x: 3,
-            y: 11,
-            clue: "25.  Somewhat irrational loathing for Scottish town (5)",
-            solution: "ALLOA",
-          },
-          {
-            x: 11,
-            y: 12,
-            clue: "27.  A drop in rent (4)",
-            solution: "TEAR",
-          },
-        ],
-      },
+      crosswordID: null,
+      crosswordData: {},
       crosswordModel: null,
       crosswordController: null,
+      autosave: null,
     };
   },
 
   mounted() {
-    localStorage.setItem("myCat", "Tom");
-    this.cat = localStorage.getItem("myCat");
-
-    this.fetchAndBuildCrossword(this.crosswordID);
+    this.crosswordID = 29504;
   },
 
   watch: {
     crosswordID() {
-      this.fetchAndBuildCrossword();
+      clearInterval(this.autosave);
+      var crosswordDataString = localStorage.getItem(this.crosswordID);
+      if (crosswordDataString) {
+        this.crosswordData = JSON.parse(crosswordDataString);
+        this.buildCrossword();
+      } else {
+        this.fetchAndBuildCrossword();
+      }
     },
   },
 
@@ -283,14 +76,46 @@ export default {
         typeof value === "object" ? JSON.stringify(value) : value + "<br>";
     },
 
-    fetchAndBuildCrossword() {
-      document.cookie =
-        this.crosswordID +
-        "=" +
-        this.crosswordID.toString().split("").reverse().join("");
-      ("; expires=Jan, 01 Dec 2999 12:00:00 UTC");
-      this.cookie = this.getCookie(this.crosswordID);
+    getAnswered(id) {
+      return JSON.parse(localStorage.getItem(id))?.answered;
+    },
 
+    autosaver() {
+      let answered = 0;
+      if (this.crosswordData?.acrossClues) {
+        this.crosswordData.acrossClues.forEach((acrossClue, index) => {
+          acrossClue.answer =
+            this.crosswordController.crosswordModel.acrossClues[index].answer;
+          acrossClue.answer.replace(/ /g, "").length ==
+          acrossClue.solution.length
+            ? answered++
+            : null;
+        });
+
+        this.crosswordData.downClues.forEach((downClue, index) => {
+          downClue.answer =
+            this.crosswordController.crosswordModel.downClues[index].answer;
+          downClue.answer.replace(/ /g, "").length == downClue.solution.length
+            ? answered++
+            : null;
+        });
+
+        this.crosswordData.answered =
+          Math.floor(
+            (answered /
+              (this.crosswordData.downClues.length +
+                this.crosswordData.acrossClues.length)) *
+              100
+          ) + "%";
+
+        localStorage.setItem(
+          this.crosswordID,
+          JSON.stringify(this.crosswordData)
+        );
+      }
+    },
+
+    fetchAndBuildCrossword() {
       var xhr = new XMLHttpRequest();
       xhr.open(
         "GET",
@@ -310,18 +135,22 @@ export default {
 
       xhr.send();
     },
+
     buildCrossword() {
       this.$refs.crossword.innerHTML = "";
       try {
+        console.log(this.crosswordData);
         this.crosswordModel = CrosswordsJS.compileCrossword(this.crosswordData);
       } catch (err) {
         console.log(`Error compiling crossword: ${err}`);
       }
-
-      this.crosswordController = new CrosswordsJS.Controller(
-        this.crosswordModel,
-        this.$refs.crossword
-      );
+      if (this.crosswordModel) {
+        this.crosswordController = new CrosswordsJS.Controller(
+          this.crosswordModel,
+          this.$refs.crossword
+        );
+        this.autosave = setInterval(() => this.autosaver(), 5000);
+      }
     },
 
     transformCrosswordData(original) {
@@ -369,22 +198,6 @@ export default {
         acrossClues,
         downClues,
       };
-    },
-
-    getCookie(cname) {
-      let name = cname + "=";
-      let decodedCookie = decodeURIComponent(document.cookie);
-      let ca = decodedCookie.split(";");
-      for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == " ") {
-          c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-          return c.substring(name.length, c.length);
-        }
-      }
-      return "";
     },
   },
 };

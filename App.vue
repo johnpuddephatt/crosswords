@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="h-screen flex flex-col justify-between">
     <div class="flex">
       <div ref="crossword"></div>
       <div class="h-auto gap-4 px-2 flex flex-col justify-between">
@@ -57,9 +57,9 @@
       </div>
     </div>
 
-    <div v-if="crosswordModel" class="">
+    <div v-if="crosswordModel" class="text-lg">
       <div v-if="showClues == 'down'" class="columns-2">
-        <div class="flex mb-1" v-for="clue in crosswordModel.downClues">
+        <div class="flex mb-2" v-for="clue in crosswordModel.downClues">
           <span class="font-bold text-right tracking-tighter w-6 mr-0.5">{{
             clue.clueLabel
           }}</span>
@@ -70,7 +70,7 @@
       </div>
 
       <div v-if="showClues == 'across'" class="columns-2">
-        <div class="flex mb-1" v-for="clue in crosswordModel.acrossClues">
+        <div class="flex mb-2" v-for="clue in crosswordModel.acrossClues">
           <span class="font-bold text-right tracking-tighter w-6 mr-0.5">{{
             clue.clueLabel
           }}</span>

@@ -41,7 +41,6 @@ export default {
   },
 
   mounted() {
-    console.log(this.$refs.crossword);
     this.fetchAndBuildCrossword(this.crosswordID);
 
     // document.cookie =
@@ -55,43 +54,43 @@ export default {
   watch: {
     crosswordID() {
       console.log("trying: " + this.crosswordID);
-      this.fetchAndBuildCrossword(this.crosswordID);
+      this.fetchAndBuildCrossword();
     },
   },
 
   methods: {
-    fetchAndBuildCrossword(id) {
-      console.log("fetchAndBuildCrossword()");
+    fetchAndBuildCrossword(crossword_id) {
+      console.log("fetchAndBuildCrossword");
 
-      fetch("./guardian-demo.json")
-        .then((response) => console.log("inside fetch()"))
-        .then((response) => response.json())
-        .then((response) => console.log(response));
+      //   fetch("./guardian-demo.json")
+      //     .then((response) => console.log("inside fetch()"))
+      //     .then((response) => response.json())
+      //     .then((response) => console.log(response));
 
       console.log("after fetch()");
-      var xhr = new XMLHttpRequest();
-      xhr.open(
-        "GET",
-        "https://faas-lon1-917a94a7.doserverless.co/api/v1/web/fn-ed3fd66e-24fe-4bd6-acc8-7352117dc861/default/crosswordGrabber.json?id=" +
-          id,
-        true
-      );
+      //   var xhr = new XMLHttpRequest();
+      //   xhr.open(
+      //     "GET",
+      //     "https://faas-lon1-917a94a7.doserverless.co/api/v1/web/fn-ed3fd66e-24fe-4bd6-acc8-7352117dc861/default/crosswordGrabber.json?id=" +
+      //       this.crosswordID,
+      //     true
+      //   );
 
-      var vue = this;
+      //   var vue = this;
 
-      xhr.onreadystatechange = function () {
-        console.log("onreadystatechange ");
+      //   xhr.onreadystatechange = function () {
+      //     console.log("onreadystatechange ");
 
-        if (xhr.readyState == 4 && xhr.status == 200) {
-          var response = JSON.parse(xhr.responseText);
-          vue.crosswordData = vue.transformCrosswordData(response.body);
+      //     if (xhr.readyState == 4 && xhr.status == 200) {
+      //       var response = JSON.parse(xhr.responseText);
+      //       vue.crosswordData = vue.transformCrosswordData(response.body);
 
-          console.log(vue.crosswordData);
-          vue.buildCrossword();
-        }
-      };
+      //       console.log(vue.crosswordData);
+      //       vue.buildCrossword();
+      //     }
+      //   };
 
-      xhr.send();
+      //   xhr.send();
     },
     buildCrossword() {
       this.$refs.crossword.innerHTML = "";

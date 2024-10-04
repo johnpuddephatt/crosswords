@@ -21,27 +21,36 @@
         </div>
 
         <div class="flex flex-col gap-1 mt-auto" v-if="crosswordController">
-          <button class="w-auto" @click="crosswordController.revealCrossword()">
+          <button
+            class="block w-auto"
+            @click="crosswordController.revealCrossword()"
+          >
             Reveal all
           </button>
-          <button class="w-auto" @click="crosswordController.cleanCrossword()">
+          <button
+            class="block w-auto"
+            @click="crosswordController.cleanCrossword()"
+          >
             Check all
           </button>
 
           <button
-            class="w-auto"
+            class="block w-auto"
             @click="crosswordController.revealCurrentClue()"
           >
             Reveal clue
           </button>
           <button
-            class="w-auto"
+            class="block w-auto"
             @click="crosswordController.cleanCurrentClue()"
           >
             Check clue
           </button>
 
-          <button class="w-auto" @click="crosswordController.resetCrossword()">
+          <button
+            class="block w-auto"
+            @click="crosswordController.resetCrossword()"
+          >
             Clear all
           </button>
         </div>

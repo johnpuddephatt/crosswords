@@ -2,7 +2,7 @@
   <div>
     <div class="flex">
       <div ref="crossword"></div>
-      <div class="h-auto gap-4 border-2 px-2 flex flex-col justify-between">
+      <div class="h-auto gap-4 px-2 flex flex-col justify-between">
         <select class="border rounded block w-full" v-model="crosswordID">
           <option v-for="id in [29504, 29503, 29502, 29501]" :value="id">
             Guardian #{{ id }}
@@ -20,35 +20,35 @@
           </div>
         </div>
 
-        <div class="flex flex-col gap-0.5 mt-auto" v-if="crosswordController">
+        <div class="flex flex-col relative" v-if="crosswordController">
           <button
-            class="block w-auto bg-gray-200 rounded-lg"
+            class="block mt-1 max-w-full w-auto bg-gray-200 rounded-lg"
             @click="crosswordController.revealCrossword()"
           >
             Reveal all
           </button>
           <button
-            class="block w-auto bg-gray-200 rounded-lg"
+            class="block mt-1 w-auto bg-gray-200 rounded-lg"
             @click="crosswordController.cleanCrossword()"
           >
             Check all
           </button>
 
           <button
-            class="block w-auto bg-gray-200 rounded-lg"
+            class="block mt-1 w-auto bg-gray-200 rounded-lg"
             @click="crosswordController.revealCurrentClue()"
           >
             Reveal clue
           </button>
           <button
-            class="block w-auto bg-gray-200 rounded-lg"
+            class="block mt-1 w-auto bg-gray-200 rounded-lg"
             @click="crosswordController.cleanCurrentClue()"
           >
             Check clue
           </button>
 
           <button
-            class="block w-auto bg-gray-200 rounded-lg"
+            class="block mt-1 w-auto bg-gray-200 rounded-lg"
             @click="crosswordController.resetCrossword()"
           >
             Clear all
@@ -57,10 +57,10 @@
       </div>
     </div>
 
-    <div v-if="crosswordModel" class="flex gap-1 text-sm">
-      <div class="basis-1/2">
-        <div class="flex gap-0.5" v-for="clue in crosswordModel.downClues">
-          <span class="font-bold text-right tracking-tighter w-5">{{
+    <div v-if="crosswordModel" class="">
+      <div v-if="showClues == 'down'" class="columns-2">
+        <div class="flex mb-1" v-for="clue in crosswordModel.downClues">
+          <span class="font-bold text-right tracking-tighter w-6 mr-0.5">{{
             clue.clueLabel
           }}</span>
           <div>
@@ -69,9 +69,9 @@
         </div>
       </div>
 
-      <div class="basis-1/2">
-        <div class="flex gap-0.5" v-for="clue in crosswordModel.acrossClues">
-          <span class="font-bold text-right tracking-tighter w-5">{{
+      <div v-if="showClues == 'across'" class="columns-2">
+        <div class="flex mb-1" v-for="clue in crosswordModel.acrossClues">
+          <span class="font-bold text-right tracking-tighter w-6 mr-0.5">{{
             clue.clueLabel
           }}</span>
           <div>
@@ -90,6 +90,7 @@ import { CrosswordsJS } from "./libraries/crosswords-js/src/index.mjs";
 export default {
   data() {
     return {
+      showClues: "across",
       current: null,
       crosswordID: null,
       crosswordData: {},

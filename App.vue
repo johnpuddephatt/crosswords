@@ -62,7 +62,7 @@
       </div>
     </div>
 
-    <div v-if="crosswordModel" class="text-lg">
+    <div v-if="crosswordModel" class="text-lg pb-4">
       <div v-if="showClues == 'down'" class="columns-2">
         <div class="flex mb-1" v-for="clue in crosswordModel.downClues">
           <span class="font-bold text-right tracking-tighter w-6 mr-0.5">{{

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex items-start mb-1">
+    <div class="flex items-start">
       <div ref="crossword"></div>
       <div class="h-auto gap-4 px-2 flex self-stretch flex-col">
         <select class="border rounded block w-full" v-model="crosswordID">
@@ -58,7 +58,7 @@
     </div>
 
     <div v-if="crosswordModel" class="flex gap-1">
-      <div class="w-1/2">
+      <div>
         <div class="flex gap-0.5" v-for="clue in crosswordModel.downClues">
           <span class="font-bold tracking-tighter w-5">{{
             clue.clueLabel
@@ -69,7 +69,7 @@
         </div>
       </div>
 
-      <div class="w-1/2">
+      <div>
         <div class="flex gap-0.5" v-for="clue in crosswordModel.acrossClues">
           <span class="font-bold tracking-tighter w-5">{{
             clue.clueLabel

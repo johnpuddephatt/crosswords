@@ -210,8 +210,8 @@ table {
   font-size: large;
   /* added */
 
-  height: 482px;
-  width: 482px;
+  height: 467px;
+  width: 467px;
 
   /* display: flex;
   flex-direction: row;
@@ -223,8 +223,8 @@ table {
   position: relative;
   float: left;
   z-index: 0;
-  height: 30px;
-  width: 30px;
+  height: 29px;
+  width: 29px;
   border: 1px solid black;
 }
 

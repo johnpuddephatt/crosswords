@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen flex flex-col justify-between">
+  <div class="font-sans h-screen flex flex-col justify-between">
     <div class="flex">
       <div ref="crossword"></div>
       <div class="h-auto flex-1 gap-4 px-2 flex flex-col justify-between">

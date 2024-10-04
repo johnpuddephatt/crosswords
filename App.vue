@@ -68,7 +68,10 @@ export default {
       //     .then((response) => response.json())
       //     .then((response) => console.log(response));
 
-      console.log("after fetch");
+      setTimeout(function () {
+        console.log("after fetch");
+      }, 2000);
+
       //   var xhr = new XMLHttpRequest();
       //   xhr.open(
       //     "GET",

@@ -7,7 +7,10 @@
           class="mt-2 text-lg p-1 border rounded block w-full"
           v-model="crosswordID"
         >
-          <option v-for="id in [29504, 29503, 29502, 29501]" :value="id">
+          <option
+            v-for="id in [29504, 29503, 29502, 29501, 29499, 29498, 29497]"
+            :value="id"
+          >
             Guardian #{{ id }}
             {{ getAnswered(id) }}
           </option>
@@ -63,7 +66,11 @@
     </div>
 
     <div v-if="crosswordModel" class="text-lg pb-4">
-      <div v-if="showClues == 'down'" class="columns-2">
+      <div
+        @click="showClues = 'across'"
+        v-if="showClues == 'down'"
+        class="columns-2"
+      >
         <div
           class="break-inside-avoid flex mb-1"
           v-for="clue in crosswordModel.downClues"
@@ -77,7 +84,11 @@
         </div>
       </div>
 
-      <div v-if="showClues == 'across'" class="columns-2">
+      <div
+        @click="showClues = 'down'"
+        v-if="showClues == 'across'"
+        class="columns-2"
+      >
         <div
           class="break-inside-avoid flex mb-1"
           v-for="clue in crosswordModel.acrossClues"

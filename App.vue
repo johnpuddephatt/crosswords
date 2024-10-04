@@ -20,35 +20,35 @@
           </div>
         </div>
 
-        <div class="flex flex-col gap-1 mt-auto" v-if="crosswordController">
+        <div class="flex flex-col gap-0.5 mt-auto" v-if="crosswordController">
           <button
-            class="block w-auto"
+            class="block w-auto bg-gray-200 rounded-lg"
             @click="crosswordController.revealCrossword()"
           >
             Reveal all
           </button>
           <button
-            class="block w-auto"
+            class="block w-auto bg-gray-200 rounded-lg"
             @click="crosswordController.cleanCrossword()"
           >
             Check all
           </button>
 
           <button
-            class="block w-auto"
+            class="block w-auto bg-gray-200 rounded-lg"
             @click="crosswordController.revealCurrentClue()"
           >
             Reveal clue
           </button>
           <button
-            class="block w-auto"
+            class="block w-auto bg-gray-200 rounded-lg"
             @click="crosswordController.cleanCurrentClue()"
           >
             Check clue
           </button>
 
           <button
-            class="block w-auto"
+            class="block w-auto bg-gray-200 rounded-lg"
             @click="crosswordController.resetCrossword()"
           >
             Clear all
@@ -57,7 +57,7 @@
       </div>
     </div>
 
-    <div v-if="crosswordModel" class="flex gap-1">
+    <div v-if="crosswordModel" class="flex gap-1 text-sm">
       <div class="basis-1/2">
         <div class="flex gap-0.5" v-for="clue in crosswordModel.downClues">
           <span class="font-bold tracking-tighter w-5">{{

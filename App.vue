@@ -64,7 +64,10 @@
 
     <div v-if="crosswordModel" class="text-lg pb-4">
       <div v-if="showClues == 'down'" class="columns-2">
-        <div class="flex mb-1" v-for="clue in crosswordModel.downClues">
+        <div
+          class="break-inside-avoid flex mb-1"
+          v-for="clue in crosswordModel.downClues"
+        >
           <span class="font-bold text-right tracking-tighter w-6 mr-0.5">{{
             clue.clueLabel
           }}</span>
@@ -75,7 +78,10 @@
       </div>
 
       <div v-if="showClues == 'across'" class="columns-2">
-        <div class="flex mb-1" v-for="clue in crosswordModel.acrossClues">
+        <div
+          class="break-inside-avoid flex mb-1"
+          v-for="clue in crosswordModel.acrossClues"
+        >
           <span class="font-bold text-right tracking-tighter w-6 mr-0.5">{{
             clue.clueLabel
           }}</span>

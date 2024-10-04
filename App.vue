@@ -289,33 +289,33 @@ export default {
       this.buildCrossword();
       this.logger("fetchAndBuild() here we go...");
 
-      fetch("./guardian-demo.json")
-        .then((response) => response.json())
-        .then((response) => this.logger(response));
+      //   fetch("./guardian-demo.json")
+      //     .then((response) => response.json())
+      //     .then((response) => this.logger(response));
 
-      //   var xhr = new XMLHttpRequest();
-      //   xhr.open(
-      //     "GET",
-      //     "https://faas-lon1-917a94a7.doserverless.co/api/v1/web/fn-ed3fd66e-24fe-4bd6-acc8-7352117dc861/default/crosswordGrabber.json?id=" +
-      //       this.crosswordID,
-      //     true
-      //   );
+      var xhr = new XMLHttpRequest();
+      xhr.open(
+        "GET",
+        "https://faas-lon1-917a94a7.doserverless.co/api/v1/web/fn-ed3fd66e-24fe-4bd6-acc8-7352117dc861/default/crosswordGrabber.json?id=" +
+          this.crosswordID,
+        true
+      );
 
-      //   var vue = this;
+      var vue = this;
 
-      //   xhr.onreadystatechange = function () {
-      //     console.log("onreadystatechange ");
+      xhr.onreadystatechange = function () {
+        this.logger("onreadystatechange ");
 
-      //     if (xhr.readyState == 4 && xhr.status == 200) {
-      //       var response = JSON.parse(xhr.responseText);
-      //       vue.crosswordData = vue.transformCrosswordData(response.body);
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          var response = JSON.parse(xhr.responseText);
+          vue.crosswordData = vue.transformCrosswordData(response.body);
 
-      //       console.log(vue.crosswordData);
-      //       vue.buildCrossword();
-      //     }
-      //   };
+          console.log(vue.crosswordData);
+          vue.buildCrossword();
+        }
+      };
 
-      //   xhr.send();
+      xhr.send();
     },
     buildCrossword() {
       this.$refs.crossword.innerHTML = "";

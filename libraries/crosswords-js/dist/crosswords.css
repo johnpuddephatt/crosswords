@@ -59,13 +59,18 @@
 .crossword-grid {
   /* display: grid; */
   border-collapse: collapse;
-  box-sizing: border-box;
+  box-sizing: content-box;
   padding: 1px;
   width: min-content;
   color: black;
+  background: #ddd;
   font-family: sans-serif;
   height: 467px;
   width: 467px;
+}
+
+.crossword-grid * {
+  box-sizing: content-box;
 }
 
 .crossword-grid .cwcell {

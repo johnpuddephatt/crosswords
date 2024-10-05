@@ -72,7 +72,7 @@
         class="columns-2"
       >
         <div
-          class="break-inside-avoid flex mb-1"
+          class="break-inside-avoid leading-tight flex mb-1"
           v-for="clue in crosswordModel.downClues"
         >
           <span class="font-bold text-right tracking-tighter w-6 mr-0.5">{{
@@ -90,7 +90,7 @@
         class="columns-2"
       >
         <div
-          class="break-inside-avoid flex mb-1"
+          class="break-inside-avoid leading-tight flex mb-1"
           v-for="clue in crosswordModel.acrossClues"
         >
           <span class="font-bold text-right tracking-tighter w-6 mr-0.5">{{
